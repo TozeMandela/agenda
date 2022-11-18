@@ -9,6 +9,8 @@ const app = express();
 /* connectando ao mongo */
 const mongoose = require('mongoose');
 
+
+
 mongoose.connect(process.env.CONNECTBD).then(()=>{
     app.emit('Connected');
     console.log('connetion with data-bases is sucessfull.');
