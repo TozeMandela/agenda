@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>home</title>
+    <%- include("./includes/styles") %>
+</head>
+<body>
+    <%- include("./includes/header") %>
+    <div class="row">
+        <div class="col-2">
+        </div>
+
+          <div class="col-8">
+            
+            <h1 class="display-4 text-center">Bem vindo a sua lista de contactos</h1>
+            <hr>
+            <%- include("./includes/respostas") %>
+            <table class="table text-center">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">E-mail</th>
+                    <th scope="col">Contacto</th>
+                    <th scope="col">Controls</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if(!user){ %>
+                    <tr>
+                      <td>1</td>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td><button class="btn btn-success"></button></td>
+                    </tr>
+                  <% }else{ %>
+                    <% if(contacts.length>0){ %>
+                      <% contacts.forEach((tel, index)=>{ %>
+                      <tr>
+                        <td><%= index %></td>
+                        <td><%= tel.name %></td>
+                        <td><%= tel.email %></td>
+                        <td><%= tel.tel %></td>
+                        <td>
+                          <a class="btn btn-success " href="contacto/edit/<%= tel._id %>">editar</a>
+                          <a class="btn btn-danger m-1" data-id="<%= tel._id %>" href="contacto/excluir/<%= tel._id %>">excluir</a></td>
+                      </tr>
+                      <% }) %>
+                    <% }else{ %>
+                      <p class="text-center display-6">Não existem contactos na sua lista</p>
+                    <% } %>
+                  <% } %>
+
+                </tbody>
+              </table>
+          </div>
+        <div class="col-2"></div>
+    </div>
+
+    <%- include("./includes/footer") %>
+</body>
+</html>
